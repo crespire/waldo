@@ -61,3 +61,107 @@ Not sure. I want to think on this a bit more.
 
 
 Maybe overthinking it. Perhaps leaderboards don't need to be related to the pictures at all. Just have an image ID, and have many scores. Then as part of session, just have a "save_score" method that creates a score. Then the user is discarded anyway, so the score can just be a record that belongs to a leaderboard, which is "split" by picture.
+
+## Having slept on it
+I think we should simplify the API to three endpoints.
+
+GET `/pictures` should return all current images available to play. This endpoint should not be authenticated.
+
+```json
+{
+  {
+    "id": "id",
+    "name": "pic_name",
+    "secrets": "#_of_secrets",
+    "difficulty": "easy"
+  },
+  {
+    "id": "id",
+    "name": "pic_name",
+    "secrets": "#_of_secrets",
+    "difficulty": "easy"
+  },
+}
+```
+
+GET `/pictures/:id/scores` should return the leaderboard for that picture. This endpoint is not authenticated.
+
+POST `/session/new` Creates a session on the backend and should return all the information related to a picture for the front end client with authentication token. This endpoint should not be authenticated.
+
+```json
+{
+  "token": "session",
+  "start_time": "datetime",
+  "secrets": {
+    "1": {
+      "name": "Waldo"
+      },
+    "2": {
+      "name": "Wizard",
+      }
+  }
+}
+```
+
+GET `/pictures/:id/secrets/check?x=<x>&y=<y>` should be sent on every click and return information. This end point should be authenticated.
+
+```json
+{ // success
+  "found": true,
+  "name": "Waldo",
+  "pin":
+    {
+      "x": "x",
+      ":y": "y"
+    }
+}
+
+{ // fail
+  "found": false
+}
+```
+
+POST `/pictures/:id/scores/save` should post a completed session to the API to persists in the database. This endpoint is authenticated.
+
+I think, with this endpoint structure in mind, we have this map of object relations:
+
+```ruby
+class Picture
+  has_many :scores
+  has_many :secrets
+
+  name:string
+  number_of_secrets:integer
+  difficulty:string
+end
+
+class Secret
+  belongs_to :picture
+
+  x:string
+  y:string
+  name:string
+end
+
+class Score
+  belongs_to :picture
+
+  name:string
+  start:datetime
+  end:datetime
+end
+
+
+# routes.rb
+namespace :api do
+  namespace :v1 do
+    get 'pictures', to: 'pictures#index'
+    get 'pictures/:id/new'. to: 'sessions#new'
+    get 'pictures/:id/secrets/check', to: 'secrets#check'
+    get 'pictures/:id/scores', to: 'scores#index'
+    post 'pictures/:id/scores/save', to: 'scores#create'
+  end
+end
+```
+
+I think using a session cookie is the way to go. I think having a user model but not persisting them to database might be helpful in managing the sessions.
