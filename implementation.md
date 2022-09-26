@@ -59,3 +59,5 @@ on win (ie all secrets discovered): `/api/v1/session/score?id=<pic_id>`
 
 Not sure. I want to think on this a bit more.
 
+
+Maybe overthinking it. Perhaps leaderboards don't need to be related to the pictures at all. Just have an image ID, and have many scores. Then as part of session, just have a "save_score" method that creates a score. Then the user is discarded anyway, so the score can just be a record that belongs to a leaderboard, which is "split" by picture.
