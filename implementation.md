@@ -165,3 +165,5 @@ end
 ```
 
 I think using a session cookie is the way to go. I think having a user model but not persisting them to database might be helpful in managing the sessions.
+
+I think I'm going to start implementing the front end and will make the backend completely public to start. Maybe I will try to do some authentication after.
