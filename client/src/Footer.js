@@ -1,7 +1,7 @@
 function Footer(props) {
 
   return(
-    <div>
+    <div className="basis-auto grow-0">
       FOOTER CONTENT
     </div>
   );
