@@ -6,10 +6,16 @@ import { Link } from 'react-router-dom';
 function Menu(props) {
 
   return(
-    <div>
-      <Link to="game/track"><img src={thumbnailTrack} alt="Track"></img></Link>
-      <Link to="game/beach"><img src={thumbnailBeach} alt="Beach"></img></Link>
-      <Link to="game/fruit"><img src={thumbnailFruit} alt="Fruitland"></img></Link>
+    <div className="flex grow justify-between content-center items-center">
+      <span className="text-center">
+        <Link to="game/track"><img className="max-w-xs" src={thumbnailTrack} alt="Track"></img></Link>Easy
+      </span>
+      <span className="text-center">
+        <Link to="game/beach"><img className="max-w-xs" src={thumbnailBeach} alt="Beach"></img></Link>Medium
+      </span>
+      <span className="text-center">
+        <Link to="game/fruit"><img className="max-w-xs" src={thumbnailFruit} alt="Fruitland"></img></Link>Hard
+      </span>
     </div>
   );
 }
