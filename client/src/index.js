@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <Menu />,
       },
       {
-        path: 'image',
+        path: '/game/:image',
         element: <Game />,
       },
     ]

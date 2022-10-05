@@ -1,7 +1,9 @@
 function Footer(props) {
 
   return(
-    <div></div>
+    <div>
+      FOOTER CONTENT
+    </div>
   );
 }
 
