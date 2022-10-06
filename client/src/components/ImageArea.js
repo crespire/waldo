@@ -13,6 +13,8 @@ function ImageArea(props) {
       Send backend x, y and image name. Then we can check if the click is within bounds for any character
       JSON Response on success: { "found": true, "coords": [x, y], "name": "waldo" }
       JSON Response on fail: { "found": false, "coords": [], "name": "" }
+
+      For now, we can have this JSON stored and handled in the front end.
     */
   }
   
@@ -33,9 +35,6 @@ function ImageArea(props) {
   return(
     <div id="play-area" className="basis-full h-full w-full overflow-auto">
       <canvas ref={canvasRef} onClick={handleClick} id="image-canvas" width="3000" height="1920"></canvas>
-      {
-        // <img onClick={handleClick} className="min-w-min min-h-min" src={require(`../assets/images/${image}.jpg`)} alt={image}></img>
-      }
     </div>
   );
 }

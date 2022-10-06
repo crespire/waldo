@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import { useParams } from "react-router-dom";
 import GameInfo from "./GameInfo";
 import ImageArea from "./ImageArea";
+import short from 'short-uuid';
+
+const GameIDContext = createContext();
 
 function Game(props) {
   const params = useParams();
@@ -9,8 +12,10 @@ function Game(props) {
 
   return(
     <div className="flex flex-col w-full h-full">
-      <GameInfo />
-      <ImageArea image={params['image']} setStartTime={setStartTime} />
+      <GameIDContext.Provider value={short.generate()}>
+        <GameInfo />
+        <ImageArea image={params['image']} setStartTime={setStartTime} />
+      </GameIDContext.Provider>      
     </div>
   );
 }
