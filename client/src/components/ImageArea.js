@@ -9,8 +9,11 @@ function ImageArea(props) {
     const y = event.nativeEvent.layerY;
     console.log(`X: ${x}, Y: ${y}`);
 
-    // Send backend x, y and image. Then we can check if the click is within bounds for any character
-    // If so, send back x, y to make circle on image.
+    /*
+      Send backend x, y and image name. Then we can check if the click is within bounds for any character
+      JSON Response on success: { "found": true, "coords": [x, y], "name": "waldo" }
+      JSON Response on fail: { "found": false, "coords": [], "name": "" }
+    */
   }
   
   useEffect(() => {    
