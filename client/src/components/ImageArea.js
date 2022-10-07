@@ -11,7 +11,18 @@ function ImageArea(props) {
     const data = await response.json();
 
     return data;
-  }  
+
+    // return { "found": true, "coords": [323, 683], "name": "odlaw" };
+  }
+
+  const markCanvas = (x, y) => {
+    const ctx = canvasRef.current.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(x, y, 75, 0, 2 * Math.PI, false);
+    ctx.lineWidth = 1
+    ctx.strokeStyle = '#FF0000';
+    ctx.stroke();
+  }
 
   const handleClick = (event) => {
     const x = event.nativeEvent.layerX;
@@ -28,6 +39,7 @@ function ImageArea(props) {
 
     checkClick(x, y)
       .then(data => {
+        console.log('Got data: ', data);
         if (Object.keys(data).includes('name')) {
           setCharacterStatus(oldStatus => {
             return { ...oldStatus, [data['name']]: true };
