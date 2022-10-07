@@ -1,8 +1,17 @@
 import { useEffect, useRef } from 'react';
 
 function ImageArea(props) {
-  const { image, setStartTime } = props;
+  const { image, setStartTime, setCharacterStatus } = props;
   const canvasRef = useRef(null);
+
+  const checkClick = async (x, y) => {
+    const urlBase = 'http://localhost:3000/secrets/check/'
+    const requestString = `?image=${image}&x=${x}&y=${y}`;
+    const response = await fetch(urlBase + requestString);
+    const data = await response.json();
+
+    return data;
+  }  
 
   const handleClick = (event) => {
     const x = event.nativeEvent.layerX;
@@ -12,10 +21,22 @@ function ImageArea(props) {
     /*
       Send backend x, y and image name. Then we can check if the click is within bounds for any character
       JSON Response on success: { "found": true, "coords": [x, y], "name": "waldo" }
-      JSON Response on fail: { "found": false, "coords": [], "name": "" }
+      JSON Response on fail: { "found": false }
 
       For now, we can have this JSON stored and handled in the front end.
     */
+
+    checkClick(x, y)
+      .then(data => {
+        if (Object.keys(data).includes('name')) {
+          setCharacterStatus(oldStatus => {
+            return { ...oldStatus, [data['name']]: true };
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Unable to check click: ', error);
+      });
   }
   
   useEffect(() => {    
