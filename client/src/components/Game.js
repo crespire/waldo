@@ -9,12 +9,18 @@ const GameIDContext = createContext();
 function Game(props) {
   const params = useParams();
   const [startTime, setStartTime] = useState(0);
+  const [characterStatus, setCharacterStatus] = useState({
+    "waldo": false,
+    "wilma": false,
+    "wizard": false,
+    "odlaw": false,
+  });
 
   return(
     <div className="flex flex-col w-full h-full">
       <GameIDContext.Provider value={short.generate()}>
-        <GameInfo />
-        <ImageArea image={params['image']} setStartTime={setStartTime} />
+        <GameInfo characterStatus={characterStatus} />
+        <ImageArea image={params['image']} setStartTime={setStartTime} setCharacterStatus={setCharacterStatus} />
       </GameIDContext.Provider>      
     </div>
   );
