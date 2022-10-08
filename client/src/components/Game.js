@@ -2,6 +2,7 @@ import { useState, createContext } from 'react';
 import { useParams } from "react-router-dom";
 import GameInfo from "./GameInfo";
 import ImageArea from "./ImageArea";
+import WinModal from './WinModal';
 import short from 'short-uuid';
 
 const GameIDContext = createContext();
@@ -27,3 +28,11 @@ function Game(props) {
 }
 
 export default Game;
+
+/*
+  How do we handle winning? I want to explore a modal.
+  I also think we should validate this front end via testing
+  This way, I get some practice with react testing, plus
+  I think it would be best to mock the backend with my tests
+  to validate behaviour.
+*/

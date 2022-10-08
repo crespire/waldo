@@ -47,7 +47,7 @@ function ImageArea(props) {
         }
       })
       .catch((error) => {
-        console.log('Unable to check click: ', error);
+        console.error('Unable to check click: ', error);
       });
   }
   
