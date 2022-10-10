@@ -1,6 +1,7 @@
 import ReactPortal from "./ReactPortal";
 import { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import Close from '../assets/images/close.svg';
 
 function WinModal(props) {
   const { children, setModalOpen, modalOpen, startTime, endTime } = props;
@@ -29,7 +30,7 @@ function WinModal(props) {
   return(
     <ReactPortal className="absolute bg-alpha-white flex justify-center items-center top-0 left-0 w-screen h-screen" wrapperID="portal-container">
       <div className="bg-white border border-black border-solid p-4">
-        <button onClick={closeCallback}>Close</button>
+        <button className="flex" onClick={closeCallback}><img src={Close} alt="X"></img>Close</button>
         {children}
       </div>
     </ReactPortal>
