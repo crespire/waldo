@@ -1,7 +1,38 @@
+import ReactPortal from "./ReactPortal";
+import { useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
 function WinModal(props) {
+  const { children, setModalOpen, modalOpen, startTime, endTime } = props;
+  let navigate = useNavigate();
+
+  const closeCallback = useCallback(
+    () => {
+      // submit info to backend
+      navigate('/');
+      setModalOpen(!modalOpen);
+    },
+    [setModalOpen, modalOpen, startTime, endTime]
+  );
+
+  useEffect(() => {
+    const closeOnEscapeKey = e => e.key === "Escape" ? closeCallback() : null;
+    document.body.addEventListener("keydown", closeOnEscapeKey);
+    
+    return () => {
+      document.body.removeEventListener("keydown", closeOnEscapeKey);
+    };
+  }, [closeCallback]);
+
+  if (!modalOpen) return null;
+
   return(
-    <div className="">
-    </div>
+    <ReactPortal className="absolute bg-alpha-white flex justify-center items-center top-0 left-0 w-screen h-screen" wrapperID="portal-container">
+      <div className="bg-white border border-black border-solid p-4">
+        <button onClick={closeCallback}>Close</button>
+        {children}
+      </div>
+    </ReactPortal>
   );
 }
 

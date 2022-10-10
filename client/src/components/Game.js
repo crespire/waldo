@@ -3,20 +3,23 @@ import { useParams } from "react-router-dom";
 import GameInfo from "./GameInfo";
 import ImageArea from "./ImageArea";
 import WinModal from './WinModal';
+import WinModalContent from './WinModalContent';
 import short from 'short-uuid';
 
-const GameIDContext = createContext();
+export const GameIDContext = createContext(null);
 
 function Game(props) {
   const params = useParams();
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   const [characterStatus, setCharacterStatus] = useState({
     "waldo": false,
     "wilma": false,
     "wizard": false,
     "odlaw": false,
   });
+  
 
   useEffect(() => {
     /*
@@ -28,7 +31,7 @@ function Game(props) {
     */
     if (Object.values(characterStatus).every(entry => entry === true)) {
       setEndTime(Date.now());
-      // run modal
+      setModalOpen(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterStatus])
@@ -38,6 +41,9 @@ function Game(props) {
       <GameIDContext.Provider value={short.generate()}>
         <GameInfo characterStatus={characterStatus} />
         <ImageArea image={params['image']} setStartTime={setStartTime} setCharacterStatus={setCharacterStatus} />
+        <WinModal setModalOpen={setModalOpen} modalOpen={modalOpen} startTime={startTime} endTime={endTime}>
+          <WinModalContent />
+        </WinModal>
       </GameIDContext.Provider>      
     </div>
   );

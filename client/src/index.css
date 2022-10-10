@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-alpha-white {
+  background-color: hsla(0, 0%, 100%, 0.9);
+}
