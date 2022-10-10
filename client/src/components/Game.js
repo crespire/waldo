@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { useParams } from "react-router-dom";
 import GameInfo from "./GameInfo";
 import ImageArea from "./ImageArea";
@@ -9,13 +9,29 @@ const GameIDContext = createContext();
 
 function Game(props) {
   const params = useParams();
-  const [startTime, setStartTime] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
   const [characterStatus, setCharacterStatus] = useState({
     "waldo": false,
     "wilma": false,
     "wizard": false,
     "odlaw": false,
   });
+
+  useEffect(() => {
+    /*
+      Every time character status changes we want to check if
+      all the values are true.
+
+      If so, then display the modal that will take info and insert
+      into backend. Otherwise, do nothing.
+    */
+    if (Object.values(characterStatus).every(entry => entry === true)) {
+      setEndTime(Date.now());
+      // run modal
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [characterStatus])
 
   return(
     <div className="flex flex-col w-full h-full">
@@ -28,11 +44,3 @@ function Game(props) {
 }
 
 export default Game;
-
-/*
-  How do we handle winning? I want to explore a modal.
-  I also think we should validate this front end via testing
-  This way, I get some practice with react testing, plus
-  I think it would be best to mock the backend with my tests
-  to validate behaviour.
-*/
