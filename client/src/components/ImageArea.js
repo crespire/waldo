@@ -18,8 +18,8 @@ function ImageArea(props) {
   const markCanvas = (x, y) => {
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
-    ctx.arc(x, y, 75, 0, 2 * Math.PI, false);
-    ctx.lineWidth = 1
+    ctx.arc(x, y, 25, 0, 2 * Math.PI, false);
+    ctx.lineWidth = 5;
     ctx.strokeStyle = '#FF0000';
     ctx.stroke();
   }
@@ -33,17 +33,16 @@ function ImageArea(props) {
       Send backend x, y and image name. Then we can check if the click is within bounds for any character
       JSON Response on success: { "found": true, "coords": [x, y], "name": "waldo" }
       JSON Response on fail: { "found": false }
-
-      For now, we can have this JSON stored and handled in the front end.
     */
 
     checkClick(x, y)
       .then(data => {
         console.log('Got data: ', data);
-        if (Object.keys(data).includes('name')) {
+        if (data['found']) {
           setCharacterStatus(oldStatus => {
             return { ...oldStatus, [data['name']]: true };
           });
+          markCanvas(...data['coords']);
         }
       })
       .catch((error) => {
