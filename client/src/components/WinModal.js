@@ -2,6 +2,7 @@ import ReactPortal from "./ReactPortal";
 import { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Close from '../assets/images/close.svg';
+import useForm from "../hooks/useForm";
 
 function WinModal(props) {
   const { children, setModalOpen, modalOpen, startTime, endTime } = props;
