@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import GameInfo from "./GameInfo";
 import ImageArea from "./ImageArea";
 import WinModal from './WinModal';
-import WinModalContent from './WinModalContent';
 import short from 'short-uuid';
 
 export const GameIDContext = createContext(null);
+export const ImageContext = createContext(null);
 
 function Game(props) {
   const params = useParams();
@@ -39,11 +39,11 @@ function Game(props) {
   return(
     <div className="flex flex-col w-full h-full">
       <GameIDContext.Provider value={short.generate()}>
-        <GameInfo characterStatus={characterStatus} />
-        <ImageArea image={params['image']} setStartTime={setStartTime} setCharacterStatus={setCharacterStatus} />
-        <WinModal setModalOpen={setModalOpen} modalOpen={modalOpen} startTime={startTime} endTime={endTime}>
-          <WinModalContent />
-        </WinModal>
+        <ImageContext.Provider value={params['image']}>
+          <GameInfo characterStatus={characterStatus} />
+          <ImageArea image={params['image']} setStartTime={setStartTime} setCharacterStatus={setCharacterStatus} />
+          <WinModal setModalOpen={setModalOpen} modalOpen={modalOpen} startTime={startTime} endTime={endTime} />
+        </ImageContext.Provider>
       </GameIDContext.Provider>      
     </div>
   );
