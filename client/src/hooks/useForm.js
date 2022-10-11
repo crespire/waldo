@@ -34,7 +34,7 @@ const useForm = (callback, defaultValues = {}) => {
     switch(property) {
       case 'name':
         regex = /^\w{2,3}$/;
-        regex.test(value) ? errorRemover(property) : errorSetter(property, 'Name must be 2 or 3 characters long.');
+        regex.test(value) ? errorRemover(property) : errorSetter(property, 'Must be 2 or 3 characters.');
         break;
    
       default:
@@ -42,11 +42,11 @@ const useForm = (callback, defaultValues = {}) => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, ...args) => {
     e.preventDefault();
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length > 0) {
-      callback();
+      callback(e, ...args);
     }
   }
 
