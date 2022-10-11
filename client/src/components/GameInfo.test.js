@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from './test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
@@ -7,11 +8,7 @@ import App from '../App';
 test('renders the 4 character portraits', () => {
   const route = '/game/track';
 
-  render(
-    <MemoryRouter initialEntries={[route]}>
-      <App />
-    </MemoryRouter>
-  );
+  render(<App />, { route: route });
 
   const portraits = screen.queryAllByRole('img');
   expect(portraits.length).toBe(4);
