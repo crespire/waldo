@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Menu(props) {
 
   return(
-    <div className="flex grow justify-between content-center items-center">
+    <div className="flex grow justify-around content-center items-center">
       <span className="text-center">
         <Link to="game/track"><img className="max-w-xs" src={thumbnailTrack} alt="Track"></img></Link>Easy
       </span>
