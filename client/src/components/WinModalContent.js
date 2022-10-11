@@ -1,7 +1,5 @@
 function WinModalContent(props) {
-  return (
-    <div>Modal content</div>
-  );
+  return (<></>);
 }
 
 export default WinModalContent;
