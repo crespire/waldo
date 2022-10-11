@@ -8,13 +8,13 @@ function Menu(props) {
   return(
     <div className="flex grow justify-around content-center items-center">
       <span className="text-center">
-        <Link to="game/track"><img className="max-w-xs" src={thumbnailTrack} alt="Track"></img></Link>Easy
+        <Link to="game/track">Easy<img className="max-w-xs" src={thumbnailTrack} alt="Track"></img></Link>
       </span>
       <span className="text-center">
-        <Link to="game/beach"><img className="max-w-xs" src={thumbnailBeach} alt="Beach"></img></Link>Medium
+        <Link to="game/beach">Medium<img className="max-w-xs" src={thumbnailBeach} alt="Beach"></img></Link>
       </span>
       <span className="text-center">
-        <Link to="game/fruit"><img className="max-w-xs" src={thumbnailFruit} alt="Fruitland"></img></Link>Hard
+        <Link to="game/fruit">Hard<img className="max-w-xs" src={thumbnailFruit} alt="Fruitland"></img></Link>
       </span>
     </div>
   );
