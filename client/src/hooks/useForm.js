@@ -31,10 +31,10 @@ const useForm = (callback, defaultValues = {}) => {
 
     // Specific rules for some properties.
     let regex;
-    switch(property) {      
+    switch(property) {
       case 'name':
-        regex = /^\w{3}$/;
-        regex.test(value) ? errorRemover(property) : errorSetter(property, 'Please enter a valid email.');
+        regex = /^\w{2,3}$/;
+        regex.test(value) ? errorRemover(property) : errorSetter(property, 'Name must be 2 or 3 characters long.');
         break;
    
       default:
