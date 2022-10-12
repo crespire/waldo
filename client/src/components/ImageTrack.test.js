@@ -1,36 +1,37 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { RouterProvider, createMemoryRouter, MemoryRouter } from 'react-router-dom';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import App from '../App';
 import Menu from './Menu';
 import Game from './Game';
 
-const router = createMemoryRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <Menu />,
-      },
-      {
-        path: '/game/:image',
-        element: <Game />,
-      },
-    ]
-  }
-])
+const appRoutes = [{
+  path: '/',
+  element: <App />,
+  children: [
+    {
+      index: true,
+      element: <Menu />,
+    },
+    {
+      path: '/game/:image',
+      element: <Game />,
+    },
+  ]
+}];
 
 test('renders the correct page', async () => {
+  const path = ['/game/track'];
+  const router = createMemoryRouter(appRoutes, {
+    initialEntries: path,
+  });
+
   render(
     <RouterProvider router={router}>
       <App />
     </RouterProvider>
   );
-  await userEvent.click(screen.getByRole('link', { name: 'Easy Track' }));
-
   
   expect(screen.getByText(/playing Track/i)).toBeInTheDocument();
 });
