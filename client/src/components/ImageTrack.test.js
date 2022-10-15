@@ -36,20 +36,19 @@ test('renders the correct page', async () => {
   expect(screen.getByText(/playing Track/i)).toBeInTheDocument();
 });
 
-// https://testing-library.com/docs/example-react-router/
 /*
-  Seems like the portraits are not rendering at all.
-  There's a ton of friction with testing when using outlets
-  I am not sure still how to accurately load the right pages
-  via router to test.
+  https://jestjs.io/docs/next/jest-object#jestspyonobject-methodname
+  https://www.leighhalliday.com/mock-fetch-jest
 
-  I think, actually, the specs should be after the Images rather
-  than based on the components.
+  So, we're trying to integration test with Jest.
+  I think we have to first mock the fetch function so that we can provide a return
+  value that we can count on/set up to confirm tests.
 
-  I just have to write system/e2e tests here, so I'm not too
-  concerned about sticking with strict unit tests.
+  I also think we need to spy on the canvas in order to listen for the draws in
+  the case of a successful click.
 
-  Check the Javascript testing channel to see if others have solved
-  this problem. I just need to figure out how to load routes with
-  all the props and state I expect.
+  I also wonder if we can spy on the ImageArea handleClick() just to confirm it
+  is being clicked.
+
+  This mocking/setting up canvas has been so intensely draining.
 */
