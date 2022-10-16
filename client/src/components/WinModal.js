@@ -1,5 +1,5 @@
 import ReactPortal from "./ReactPortal";
-import { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "./Game";
 import Close from '../assets/images/close.svg';
@@ -44,9 +44,11 @@ function WinModal(props) {
       return response;
     }
 
-    let entries = getLeaderboard(image).catch(console.error);
-    setLeaderboard(entries);
-  }, []);
+    if (modalOpen) {
+      const entries = getLeaderboard(image).catch(console.error);
+      setLeaderboard(entries);
+    }
+  }, [modalOpen]);
 
   if (!modalOpen) return null;
 

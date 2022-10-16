@@ -66,7 +66,7 @@ function ImageArea(props) {
 
   return(
     <div id="play-area" className="basis-full h-full w-full overflow-auto">
-      <canvas ref={canvasRef} onClick={handleClick} id="image-canvas" width="3000" height="1920"></canvas>
+      <canvas ref={canvasRef} data-testid="canvas" onClick={handleClick} id="image-canvas" width="3000" height="1920"></canvas>
     </div>
   );
 }

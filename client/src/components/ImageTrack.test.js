@@ -5,6 +5,7 @@ import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import App from '../App';
 import Menu from './Menu';
 import Game from './Game';
+import ImageArea from './ImageArea';
 
 const appRoutes = [{
   path: '/',
@@ -21,6 +22,12 @@ const appRoutes = [{
   ]
 }];
 
+global.fetch = jest.fn(() => 
+  Promise.resolve({
+    json: () => Promise.resolve({ "found": true, "coords": [213, 156], "name": "waldo" })
+  })
+);
+
 test('renders the correct page', async () => {
   const path = ['/game/track'];
   const router = createMemoryRouter(appRoutes, {
@@ -35,6 +42,14 @@ test('renders the correct page', async () => {
   
   expect(screen.getByText(/playing Track/i)).toBeInTheDocument();
 });
+
+test('fires click event when canvas is clicked on', async () => {
+  const user = userEvent.setup();
+
+  await user.click(screen.getByTestId('canvas'));
+
+  expect(fetch).toHaveBeenCalled();
+})
 
 /*
   https://jestjs.io/docs/next/jest-object#jestspyonobject-methodname
