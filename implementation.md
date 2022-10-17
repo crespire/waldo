@@ -107,12 +107,8 @@ GET `/pictures/:id/secrets/check?x=<x>&y=<y>` should be sent on every click and 
 ```json
 { // success
   "found": true,
-  "name": "Waldo",
-  "pin":
-    {
-      "x": "x",
-      ":y": "y"
-    }
+  "name": "waldo",
+  "coords": [0, 0]
 }
 
 { // fail
@@ -171,3 +167,15 @@ Difficulty:
 Easy: Track
 Intermediate: Beach
 Hard: Fruitland
+
+
+# Frontend is done
+
+Check URL: http://localhost:3000/secrets/check?name=beach&x=511&y=561
+
+Answers
+* Track
+  * Waldo: 844, 640
+  * Oddlaw: 1800, 1230
+  * Wilma: 750, 1380
+  * Wizard: 1840, 1640

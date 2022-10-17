@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   root "pictures#index"
 
   get '/leaderboards/:name', to: 'leaderboards#show'
-  get '/scores/create'
+  post '/scores/create', to: 'scores#create'
   get '/secrets/check', to: 'secrets#check'
 end
