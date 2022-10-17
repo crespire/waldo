@@ -3,4 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "pictures#index"
+
+  get '/leaderboards/:name', to: 'leaderboards#show'
+  get '/scores/create'
+  get '/secrets/check', to: 'secrets#check'
 end

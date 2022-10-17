@@ -4,6 +4,8 @@ class Picture < ApplicationRecord
   has_many :scores, through: :leaderboard
 
   after_create do
-    build_leaderboard.save
+    @leaderboard = build_leaderboard
+    @leaderboard.save!
+    update(leaderboard_id: @leaderboard.id)
   end
 end
