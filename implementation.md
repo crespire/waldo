@@ -18,7 +18,6 @@ So, to recap:
   has_one :leaderboard
   has_many :scores through: leaderboard
   identifier: string (uniqID)
-  secrets_to_find: number
 
 `Secret`
   belongs_to :picture
