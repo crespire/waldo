@@ -6,8 +6,8 @@ function ImageArea(props) {
 
   const checkClick = async (x, y) => {
     const urlBase = 'http://localhost:3000/secrets/check/'
-    const requestString = `?image=${image}&x=${x}&y=${y}`;
-    const response = await fetch(urlBase + requestString);
+    const requestString = `?name=${image}&x=${x}&y=${y}`;
+    const response = await fetch(urlBase + requestString, { mode: 'cors' });
     const data = await response.json();
 
     return data;

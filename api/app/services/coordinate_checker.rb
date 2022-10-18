@@ -6,18 +6,17 @@ class CoordinateChecker
 
   def get_result(input)
     valid_coordinates
-    @coords.each do |pair|
-      p pair[:coords]
+    @valid_coordinates.each do |pair|
       return { found: true, coords: pair[:coords], name: pair[:name] } if inside?(*input, *pair[:coords])
     end
 
-    return { found: false }
+    { found: false }
   end
 
   private
 
   def valid_coordinates
-    @coords ||= Picture.find(@pic_id).secrets.pluck(:name, :coords).map { |name, coords| { name: name, coords: coords} }
+    @valid_coordinates ||= Picture.find(@pic_id).secrets.pluck(:name, :coords).map { |name, coords| { name: name, coords: coords} }
   end
 
   def inside?(user_x, user_y, circle_x, circle_y, radius = 25)
