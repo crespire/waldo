@@ -7,6 +7,7 @@ services:
   - type: web
     name: waldo_backend
     env: ruby
+    rootDir: api
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
