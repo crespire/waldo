@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # exit on error
+pwd
+
 cd ../api && set -o errexit
 
 cd ../api && bundle update -- bundler
