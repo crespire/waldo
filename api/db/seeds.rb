@@ -19,7 +19,7 @@ beach.secrets.build(name: 'wizard', coords: [810, 690]).save
 beach.secrets.build(name: 'waldo', coords: [1855, 735]).save
 beach.secrets.build(name: 'wilma', coords: [2320, 800]).save
 
-fruitland = Picture.create(name: 'fruitland', difficulty: 'hard')
+fruitland = Picture.create(name: 'fruit', difficulty: 'hard')
 fruitland.secrets.build(name: 'wizard', coords: [755, 950]).save
 fruitland.secrets.build(name: 'waldo', coords: [2675, 1285]).save
 fruitland.secrets.build(name: 'odlaw', coords: [1982, 1090]).save

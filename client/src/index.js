@@ -8,6 +8,8 @@ import './index.css';
 import App from './App';
 import Menu from './components/Menu';
 import Game from './components/Game';
+import Leaderboard from './components/Leaderboard';
+import MenuLeaderboard from './components/MenuLeaderboard';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
         path: '/game/:image',
         element: <Game />,
       },
+      {
+        path: '/leaderboards/:image',
+        element: <MenuLeaderboard />
+      }
     ]
   }
 ])
