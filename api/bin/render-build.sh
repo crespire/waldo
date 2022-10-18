@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # exit on error
-gem install bundler
-
-cd api
 set -o errexit
+
 bundle update -- bundler
 bundle install
 bundle exec rake assets:precompile
