@@ -1,18 +1,18 @@
 databases:
-  - name: waldo
-    databaseName: waldo_prod
-    user: waldo
+  - name: mysite
+    databaseName: mysite
+    user: mysite
 
 services:
   - type: web
-    name: waldo
+    name: mysite
     env: ruby
-    buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    buildCommand: "./api/bin/render-build.sh"
+    startCommand: "cd api/ && bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: waldo
+          name: mysite
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
