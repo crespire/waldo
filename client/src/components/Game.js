@@ -44,7 +44,7 @@ function Game(props) {
           <ImageArea image={params['image']} setStartTime={setStartTime} setCharacterStatus={setCharacterStatus} />
           <WinModal setModalOpen={setModalOpen} modalOpen={modalOpen} startTime={startTime} endTime={endTime} />
         </ImageContext.Provider>
-      </GameIDContext.Provider>      
+      </GameIDContext.Provider>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import ReactPortal from "./ReactPortal";
-import { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "./Game";
+import { BaseURLContext } from "../App";
 import Close from '../assets/images/close.svg';
 import useForm from "../hooks/useForm";
 import Leaderboard from './Leaderboard';
@@ -10,13 +11,14 @@ function WinModal(props) {
   const { setModalOpen, modalOpen, startTime, endTime } = props;
   const secondsToComplete = (Math.floor(endTime - startTime) / 1000).toFixed(1);
   const image = useContext(ImageContext);
+  const baseURL = useContext(BaseURLContext);
   const [leaderboard, setLeaderboard] = useState({});
   let navigate = useNavigate();
 
   const closeCallback = async (_, submitted = false) => {
     if (values['name'] && submitted) {
       const requestBody = { image: image, name: values['name'], start: startTime, end: endTime, seconds: secondsToComplete };
-      const requestURL = `http://localhost:3000/scores/create`;
+      const requestURL = `${baseURL}scores/create`;
       await fetch(requestURL, {
         mode: 'cors',
         method: 'POST',
@@ -45,7 +47,7 @@ function WinModal(props) {
 
   useEffect(() => {
     const getLeaderboard = async (img) => {
-      const requestURL = `http://localhost:3000/leaderboards/${img}`;
+      const requestURL = `${baseURL}leaderboards/${img}`;
       const response  = await fetch(requestURL, { mode: 'cors' })
         .then((response) => response.json());
   

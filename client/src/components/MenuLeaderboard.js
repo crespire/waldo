@@ -1,16 +1,17 @@
 import Leaderboard from "./Leaderboard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import { BaseURLContext } from "../App";
 
 function MenuLeaderboard(props) {
   const { image } = useParams();
   const [leaderboard, setLeaderboard] = useState({});
+  const baseURL = useContext(BaseURLContext);
 
   useEffect(() => {
     const getLeaderboard = async (img) => {
-      const requestURL = `http://localhost:3000/leaderboards/${img}`;
-      console.log(requestURL);
-      const response  = await fetch(requestURL, { mode: 'cors' })
+      const request = `${baseURL}leaderboards/${img}`;
+      const response  = await fetch(request, { mode: 'cors' })
         .then((response) => response.json());
 
       setLeaderboard(response);
