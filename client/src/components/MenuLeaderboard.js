@@ -24,7 +24,7 @@ function MenuLeaderboard(props) {
     <div className="flex flex-col w-full h-full justify-center items-center">
       { leaderboard.length > 0 && <Leaderboard scores={leaderboard} /> }
       { leaderboard.length === 0 &&
-        <div>No {image} scores yet, <Link className="hover:ring hover:ring-slate-300" to='/'>select an image to play!</Link></div>
+        <div>No {image} scores yet, <Link className="underline hover:ring underline hover:ring-slate-300" to='/'>select an image to play!</Link></div>
       }
     </div>
   );

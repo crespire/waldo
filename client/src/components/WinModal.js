@@ -25,7 +25,7 @@ function WinModal(props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
       })
-        .then((response) => console.log(response.json()));
+        .then(() => console.log('Score saved!'));
     } else {
       console.log('Skipped score submit');
     }
