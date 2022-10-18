@@ -7,7 +7,7 @@ import useForm from "../hooks/useForm";
 import Leaderboard from './Leaderboard';
 
 function WinModal(props) {
-  const { children, setModalOpen, modalOpen, startTime, endTime } = props;
+  const { setModalOpen, modalOpen, startTime, endTime } = props;
   const secondsToComplete = (Math.floor(endTime - startTime) / 1000).toFixed(1);
   const image = useContext(ImageContext);
   const [leaderboard, setLeaderboard] = useState({});
@@ -43,7 +43,6 @@ function WinModal(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalOpen]);
 
-  // Load leaderboard info
   useEffect(() => {
     const getLeaderboard = async (img) => {
       const requestURL = `http://localhost:3000/leaderboards/${img}`;
@@ -54,7 +53,7 @@ function WinModal(props) {
     }
 
     getLeaderboard(image).catch(console.error);
-  }, []);
+  }, [image]);
 
   if (!modalOpen) return null;
 
