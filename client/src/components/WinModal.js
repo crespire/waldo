@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ImageContext } from "./Game";
 import Close from '../assets/images/close.svg';
 import useForm from "../hooks/useForm";
+import Leaderboard from './Leaderboard';
 
 function WinModal(props) {
   const { children, setModalOpen, modalOpen, startTime, endTime } = props;
@@ -12,9 +13,17 @@ function WinModal(props) {
   const [leaderboard, setLeaderboard] = useState({});
   let navigate = useNavigate();
 
-  const closeCallback = (_, submitted = false) => {
+  const closeCallback = async (_, submitted = false) => {
     if (values['name'] && submitted) {
-      console.log('Submitted to backend with ', values['name']);
+      const requestBody = { image: image, name: values['name'], start: startTime, end: endTime, seconds: secondsToComplete };
+      const requestURL = `http://localhost:3000/scores/create`;
+      await fetch(requestURL, {
+        mode: 'cors',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })
+        .then((response) => console.log(response.json()));
     } else {
       console.log('Skipped score submit');
     }
@@ -37,15 +46,14 @@ function WinModal(props) {
   // Load leaderboard info
   useEffect(() => {
     const getLeaderboard = async (img) => {
-      const response  = await fetch(
-        'url'
-      ).then((response) => response.json());
+      const requestURL = `http://localhost:3000/leaderboards/${img}`;
+      const response  = await fetch(requestURL, { mode: 'cors' })
+        .then((response) => response.json());
   
-      return response;
+      setLeaderboard(response);
     }
 
-    let entries = getLeaderboard(image).catch(console.error);
-    setLeaderboard(entries);
+    getLeaderboard(image).catch(console.error);
   }, []);
 
   if (!modalOpen) return null;
@@ -56,7 +64,8 @@ function WinModal(props) {
       <div className="flex flex-col space-y-2 bg-white border border-black border-solid p-4">
         <h1 className="text-2xl">You found them all!</h1>
         <p>Your search took {secondsToComplete} seconds.</p>
-        <p>Add your score, or try again!</p>
+        { leaderboard.length > 0 && <Leaderboard scores={leaderboard} /> }
+        <p>Add your score below, or try again!</p>
         <form className="flex flex-col p-2 border border-solid border-black space-y-2" onSubmit={(e) => {handleSubmit(e, true)}}>
           <div className="grow">
             <label className="grow-0" htmlFor="name">Name: </label>
