@@ -15,3 +15,4 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 end
 
 Rails.application.config.hosts << 'crespire-waldo.vercel.app'
+Rails.application.config.hosts << 'waldo-backend.onrender.com'
