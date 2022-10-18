@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 # exit on error
 pwd
+cd api
+pwd
 
-cd ../api && set -o errexit
+set -o errexit
 
-cd ../api && bundle update -- bundler
-cd ../api && bundle install
-cd ../api && bundle exec rake assets:precompile
-cd ../api && bundle exec rake assets:clean
-cd ../api && bundle exec rake db:migrate
-cd ../api && bundle exec rake db:seed
+bundle update -- bundler
+bundle install
+bundle exec rake assets:precompile
+bundle exec rake assets:clean
+bundle exec rake db:migrate
+bundle exec rake db:seed
