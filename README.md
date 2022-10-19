@@ -6,7 +6,7 @@ You can find the live application in the repository's about section!
 
 # Key Learning
 This app was very fun to write, but it was a little intimidating doing both the frontend and backend application. In the end, it was an excellent learning opportunity.
-* Monorepos are a good option for smaller projects. I had considered doing two different repositories, but decided to stick everything together. It made the deployment a less plug and play, but I was able to figure it out.
+* Monorepos are a good option for smaller projects. I had considered doing two different repositories, but decided to stick everything together. It made the deployment less plug and play, but I was able to figure it out.
 * Seeing a frontend application come alive as you implement the backend was very exciting.
 * Learned how to deploy a Rails app via render.com - my previous large project(Railsbook) was deployed via Heroku, but since their offering is changing, I may move it.
 
