@@ -55,7 +55,7 @@ function WinModal(props) {
     }
 
     getLeaderboard(image).catch(console.error);
-  }, [image]);
+  }, [baseURL, image]);
 
   if (!modalOpen) return null;
 
