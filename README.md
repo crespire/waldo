@@ -9,6 +9,7 @@ This app was very fun to write, but it was a little intimidating doing both the 
 * Monorepos are a good option for smaller projects. I had considered doing two different repositories, but decided to stick everything together. It made the deployment less plug and play, but I was able to figure it out.
 * Seeing a frontend application come alive as you implement the backend was very exciting.
 * Learned how to deploy a Rails app via render.com - my previous large project(Railsbook) was deployed via Heroku, but since their offering is changing, I may move it.
+* Learned how to execute a pretty cool custom Tailwind animation.
 
 # Future Opportunities
 I had a things I wanted to include in this project, but I was starting to lose motivation over feeling stuck trying to figure them out, so there are definitely lots of future opportunities here.
