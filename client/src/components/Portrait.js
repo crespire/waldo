@@ -4,7 +4,7 @@ function Portrait(props) {
 
   return(
     <div className="basis-0 max-h-fit">
-      <img className={'max-w-[75px] aspect-square border border-black border-solid ' + style} src={require(`../assets/portraits/${name}.png`)} alt={`${name.charAt(0).toUpperCase() + name.slice(1)}`} ></img>
+      <img className={'max-w-[75px] aspect-auto border border-black border-solid ' + style} src={require(`../assets/portraits/${name}.png`)} alt={`${name.charAt(0).toUpperCase() + name.slice(1)}`} ></img>
     </div>
   );
 }
