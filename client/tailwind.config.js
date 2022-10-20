@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        'disappear': 'fadeout 3s linear forwards'
+        'disappear': 'fadeout 3s ease-out forwards'
       },
       keyframes: {
         fadeout: {
