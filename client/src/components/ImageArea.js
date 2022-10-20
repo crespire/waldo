@@ -59,6 +59,11 @@ function ImageArea(props) {
 
   return(
     <div id="play-area" className="basis-full h-full w-full overflow-auto">
+        <div className="fixed bottom-0 right-0 h-full w-full flex justify-center items-center pointer-events-none animate-disappear overflow-hidden">
+          <div className="bg-white border border-black border-solid p-4 pointer-events-none overflow-hidden">
+            Scroll to see entire image.
+          </div>          
+        </div>
       <canvas ref={canvasRef} onClick={handleClick} id="image-canvas" width="3000" height="1920"></canvas>
     </div>
   );
