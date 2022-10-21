@@ -12,7 +12,7 @@ function App() {
     <div className="mx-auto h-screen w-screen flex flex-col">
       <BaseURLContext.Provider value={url}>
         <Header />
-        <main className="flex flex-1 max-h-[93.5vh] max-w-full">
+        <main className="flex flex-1 max-h-[92.75vh] max-w-full">
           <Outlet />
         </main>      
         <Footer />
