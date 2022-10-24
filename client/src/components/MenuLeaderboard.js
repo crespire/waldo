@@ -12,7 +12,8 @@ function MenuLeaderboard(props) {
     const getLeaderboard = async (img) => {
       const request = `${baseURL}leaderboards/${img}`;
       const response  = await fetch(request, { mode: 'cors' })
-        .then((response) => response.json());
+        .then((response) => response.json())
+        .catch((error) => console.error(error));
 
       setLeaderboard(response);
     }

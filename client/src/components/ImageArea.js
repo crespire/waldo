@@ -12,8 +12,6 @@ function ImageArea(props) {
     const data = await response.json();
 
     return data;
-
-    // return { "found": true, "coords": [323, 683], "name": "odlaw" };
   }
 
   const markCanvas = (x, y) => {

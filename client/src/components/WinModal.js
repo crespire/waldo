@@ -49,7 +49,8 @@ function WinModal(props) {
     const getLeaderboard = async (img) => {
       const requestURL = `${baseURL}leaderboards/${img}`;
       const response  = await fetch(requestURL, { mode: 'cors' })
-        .then((response) => response.json());
+        .then((response) => response.json())
+        .catch((error) => console.error(error));
   
       setLeaderboard(response);
     }
