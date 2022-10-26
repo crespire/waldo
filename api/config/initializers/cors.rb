@@ -7,9 +7,9 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    #origins 'http://localhost:3001', '127.0.0.1:3001'
+    # origins 'http://localhost:3001', '127.0.0.1:3001'
 
-    origins 'waldo.crespire.dev'
+    origins 'waldo.crespire.dev', 'waldo-backend.crespire.dev'
     resource '*', headers: :any, methods: %i[get post]
   end
 end
