@@ -1,6 +1,6 @@
 # Waldo
 
-My implementation of a fullstack Where's Waldo clicker game using a frontend React application with a Rails API. This application is deployed via vercel and render with CORS set up to allow interaction between the two applications.
+My implementation of a fullstack Where's Waldo clicker game using a frontend React application with a Rails API. This application is deployed via vercel for the front end and dokku for the backend with CORS set up to allow interaction between the two applications.
 
 You can find the live application in the repository's about section!
 
