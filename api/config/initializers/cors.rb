@@ -9,11 +9,10 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     #origins 'http://localhost:3001', '127.0.0.1:3001'
 
-    origins 'waldo.crespire.dev', 'crespire-waldo.vercel.app'
+    origins 'waldo.crespire.dev'
     resource '*', headers: :any, methods: %i[get post]
   end
 end
 
 Rails.application.config.hosts << 'waldo.crespire.dev'
-Rails.application.config.hosts << 'crespire-waldo.vercel.app'
-Rails.application.config.hosts << 'waldo-backend.onrender.com'
+Rails.application.config.hosts << 'waldo-backend.crespire.dev'

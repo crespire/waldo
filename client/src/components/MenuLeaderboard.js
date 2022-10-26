@@ -1,12 +1,12 @@
 import Leaderboard from "./Leaderboard";
 import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import { BaseURLContext } from "../App";
+import { BackendURLContext } from "../App";
 
 function MenuLeaderboard(props) {
   const { image } = useParams();
   const [leaderboard, setLeaderboard] = useState({});
-  const baseURL = useContext(BaseURLContext);
+  const baseURL = useContext(BackendURLContext);
 
   useEffect(() => {
     const getLeaderboard = async (img) => {

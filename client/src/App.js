@@ -3,20 +3,20 @@ import Header from './Header';
 import Footer from './Footer';
 import { createContext } from 'react';
 
-export const BaseURLContext = createContext(null);
+export const BackendURLContext = createContext(null);
 
 function App() {
-  const url = 'https://waldo-backend.onrender.com/'
+  const url = 'https://waldo-backend.crespire.dev/'
 
   return (
     <div className="mx-auto h-screen w-screen flex flex-col">
-      <BaseURLContext.Provider value={url}>
+      <BackendURLContext.Provider value={url}>
         <Header />
         <main className="flex flex-1 max-h-[92.75vh] max-w-full">
           <Outlet />
         </main>      
         <Footer />
-      </BaseURLContext.Provider>
+      </BackendURLContext.Provider>
     </div>
   );
 }

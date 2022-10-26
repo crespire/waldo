@@ -1,10 +1,10 @@
 import { useEffect, useRef, useContext } from 'react';
-import { BaseURLContext } from '../App';
+import { BackendURLContext } from '../App';
 
 function ImageArea(props) {
   const { image, setStartTime, setCharacterStatus } = props;
   const canvasRef = useRef(null);
-  const baseURL = useContext(BaseURLContext);
+  const baseURL = useContext(BackendURLContext);
 
   const checkClick = async (x, y) => {
     const request = `${baseURL}secrets/check/?name=${image}&x=${x}&y=${y}`;

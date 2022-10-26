@@ -2,7 +2,7 @@ import ReactPortal from "./ReactPortal";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "./Game";
-import { BaseURLContext } from "../App";
+import { BackendURLContext } from "../App";
 import Close from '../assets/images/close.svg';
 import useForm from "../hooks/useForm";
 import Leaderboard from './Leaderboard';
@@ -11,7 +11,7 @@ function WinModal(props) {
   const { setModalOpen, modalOpen, startTime, endTime } = props;
   const secondsToComplete = (Math.floor(endTime - startTime) / 1000).toFixed(1);
   const image = useContext(ImageContext);
-  const baseURL = useContext(BaseURLContext);
+  const baseURL = useContext(BackendURLContext);
   const [leaderboard, setLeaderboard] = useState({});
   let navigate = useNavigate();
 
