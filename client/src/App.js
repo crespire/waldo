@@ -7,6 +7,7 @@ export const BackendURLContext = createContext(null);
 
 function App() {
   const url = 'https://waldo-backend.crespire.dev/'
+  console.log('Backend url: ', url);
 
   return (
     <div className="mx-auto h-screen w-screen flex flex-col">
