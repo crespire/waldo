@@ -4,6 +4,10 @@ My implementation of a fullstack Where's Waldo clicker game using a frontend Rea
 
 You can find the live application in the repository's about section!
 
+# Deployment notes
+* The frontend is hosted on Vercel, while the backend is hosted on dokku.
+* After backend deploy, make sure to migrate and run the seeds to seed the leaderboard data.
+
 # Key Learning
 This app was very fun to write, but it was a little intimidating doing both the frontend and backend application. In the end, it was an excellent learning opportunity.
 * Monorepos are a good option for smaller projects. I had considered doing two different repositories, but decided to stick everything together. It made the deployment less plug and play, but I was able to figure it out.
